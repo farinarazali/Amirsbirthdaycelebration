@@ -184,7 +184,7 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
                     LEVEL {String(id).padStart(2, '0')}
                   </div>
                   <button
-                    onClick={() => setShowModal(false)}
+                    onClick={() => handleModalChange(false)}
                     className="p-1 hover:bg-white/10 rounded transition-colors"
                     aria-label="Close"
                   >
