@@ -56,12 +56,12 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
       >
         <motion.div
           className={`absolute inset-0 rounded-lg border-4 ${isLocked
-              ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800 opacity-50'
-              : isSpecial
-                ? 'border-[#FFD700] bg-gradient-to-br from-[#5a3a7d] to-[#3a5a5d]'
-                : isOpened
-                  ? 'border-[#f4a460] bg-gradient-to-br from-[#3d2a4d] to-[#2a4d3d]'
-                  : 'border-[#8b9dc3] bg-gradient-to-br from-[#4a3a5d] to-[#2a3a4d]'
+            ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800 opacity-50'
+            : isSpecial
+              ? 'border-[#FFD700] bg-gradient-to-br from-[#5a3a7d] to-[#3a5a5d]'
+              : isOpened
+                ? 'border-[#f4a460] bg-gradient-to-br from-[#3d2a4d] to-[#2a4d3d]'
+                : 'border-[#8b9dc3] bg-gradient-to-br from-[#4a3a5d] to-[#2a3a4d]'
             } shadow-lg backdrop-blur-sm flex items-center justify-center overflow-hidden`}
           animate={isLocked ? {} : isSpecial ? {
             boxShadow: [
@@ -153,16 +153,17 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
             >
               <motion.div
                 className="relative max-w-lg w-full bg-gradient-to-br from-[#3d2a4d] to-[#2a3a4d] border-4 border-[#f4a460] rounded-lg shadow-2xl overflow-hidden"
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.8, opacity: 0 }}
                 animate={{
                   scale: 1,
                   opacity: 1,
                   transition: {
-                    duration: 0.2,
-                    ease: 'easeOut'
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 25
                   }
                 }}
-                exit={{ scale: 0.9, opacity: 0, transition: { duration: 0.15 } }}
+                exit={{ scale: 0.9, opacity: 0, transition: { duration: 0.12 } }}
               >
                 {/* Scanline effect */}
                 <div className="absolute inset-0 pointer-events-none opacity-20">
