@@ -379,6 +379,7 @@ export default function App() {
 
               {/* Corner decorations - at the edge */}
               {/* Corner decorations */}
+              {/* Corner decorations */}
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#f4a460]" />
               <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#f4a460]" />
               <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#f4a460]" />
