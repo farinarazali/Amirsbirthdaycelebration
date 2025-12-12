@@ -220,7 +220,7 @@ export default function App() {
       osc.type = "sine";
 
       const now = audioContext.currentTime;
-      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.setValueAtTime(1.0, now);
       gain.gain.exponentialRampToValueAtTime(0.01, now + durations[noteIndex % durations.length] / 1000);
 
       osc.start(now);
