@@ -377,11 +377,11 @@ export default function App() {
                 )}
               </div>
 
-              {/* Corner decorations */}
-              <div className="absolute top-1 left-1 w-4 h-4 border-t-2 border-l-2 border-[#f4a460]" />
-              <div className="absolute top-1 right-1 w-4 h-4 border-t-2 border-r-2 border-[#f4a460]" />
-              <div className="absolute bottom-1 left-1 w-4 h-4 border-b-2 border-l-2 border-[#f4a460]" />
-              <div className="absolute bottom-1 right-1 w-4 h-4 border-b-2 border-r-2 border-[#f4a460]" />
+              {/* Corner decorations - at the edge */}
+              <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-[#f4a460]" />
+              <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-[#f4a460]" />
+              <div className="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 border-[#f4a460]" />
+              <div className="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 border-[#f4a460]" />
             </div>
           </div>
 
