@@ -219,8 +219,8 @@ export default function App() {
       osc.type = "sine";
 
       const now = audioContext.currentTime;
-      gain.gain.setValueAtTime(0.05, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + durations[noteIndex % durations.length] / 1000);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + durations[noteIndex % durations.length] / 1000);
 
       osc.start(now);
       osc.stop(now + durations[noteIndex % durations.length] / 1000);
@@ -331,10 +331,10 @@ export default function App() {
                     value={player1Name}
                     onChange={handlePlayer1Change}
                     className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${player1Valid
-                        ? 'border-green-500 text-green-400'
-                        : player1Name
-                          ? 'border-red-500 text-red-400'
-                          : 'border-[#8b9dc3] text-[#8b9dc3]'
+                      ? 'border-green-500 text-green-400'
+                      : player1Name
+                        ? 'border-red-500 text-red-400'
+                        : 'border-[#8b9dc3] text-[#8b9dc3]'
                       } focus:outline-none focus:border-[#f4a460] transition-colors`}
                     placeholder="Enter name..."
                   />
@@ -350,10 +350,10 @@ export default function App() {
                     value={player2Name}
                     onChange={handlePlayer2Change}
                     className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${player2Valid
-                        ? 'border-green-500 text-green-400'
-                        : player2Name
-                          ? 'border-red-500 text-red-400'
-                          : 'border-[#8b9dc3] text-[#8b9dc3]'
+                      ? 'border-green-500 text-green-400'
+                      : player2Name
+                        ? 'border-red-500 text-red-400'
+                        : 'border-[#8b9dc3] text-[#8b9dc3]'
                       } focus:outline-none focus:border-[#f4a460] transition-colors`}
                     placeholder="Enter name..."
                   />
@@ -452,10 +452,10 @@ export default function App() {
         </div>
       </header>
 
-      {/* Music button */}
+      {/* Music button - z-30 so it doesn't overlap modal (z-40/z-50) */}
       <button
         onClick={toggleMusic}
-        className="fixed top-4 right-4 z-50 p-3 rounded-lg bg-[#3d2a4d] border-2 border-[#8b9dc3] hover:border-[#f4a460] transition-colors shadow-lg"
+        className="fixed top-4 right-4 z-30 p-3 rounded-lg bg-[#3d2a4d] border-2 border-[#8b9dc3] hover:border-[#f4a460] transition-colors shadow-lg"
         aria-label={isMusicPlaying ? 'Mute music' : 'Play music'}
       >
         {isMusicPlaying ? <Volume2 className="w-6 h-6 text-[#8b9dc3]" /> : <VolumeX className="w-6 h-6 text-[#8b9dc3]" />}
