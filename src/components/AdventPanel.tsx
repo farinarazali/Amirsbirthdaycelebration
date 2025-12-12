@@ -11,10 +11,16 @@ interface AdventPanelProps {
   isSpecial?: boolean;
   onOpen: (id: number) => void;
   onClick: () => void;
+  onModalChange?: (isOpen: boolean) => void;
 }
 
-export function AdventPanel({ id, message, image, isOpened, isLocked = false, isSpecial = false, onOpen, onClick }: AdventPanelProps) {
+export function AdventPanel({ id, message, image, isOpened, isLocked = false, isSpecial = false, onOpen, onClick, onModalChange }: AdventPanelProps) {
   const [showModal, setShowModal] = useState(false);
+
+  const handleModalChange = (isOpen: boolean) => {
+    setShowModal(isOpen);
+    onModalChange?.(isOpen);
+  };
 
   const handleClick = () => {
     if (isLocked) {
@@ -24,9 +30,9 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
     onClick();
     if (!isOpened) {
       onOpen(id);
-      setShowModal(true);
+      handleModalChange(true);
     } else {
-      setShowModal(true);
+      handleModalChange(true);
     }
   };
 
@@ -141,7 +147,7 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
-              onClick={() => setShowModal(false)}
+              onClick={() => handleModalChange(false)}
             />
 
             {/* Modal content */}

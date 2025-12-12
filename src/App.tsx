@@ -67,6 +67,7 @@ export default function App() {
   const [player2Name, setPlayer2Name] = useState('');
   const [player1Valid, setPlayer1Valid] = useState(false);
   const [player2Valid, setPlayer2Valid] = useState(false);
+  const [isAnyModalOpen, setIsAnyModalOpen] = useState(false);
 
   const isMusicPlayingRef = useRef(false);
 
@@ -265,9 +266,18 @@ export default function App() {
       playWhooshSound();
       setTimeout(() => {
         setHasEnteredGame(true);
+        // Auto-start music when entering the game
+        if (audioContext) {
+          if (audioContext.state === 'suspended') {
+            audioContext.resume();
+          }
+          isMusicPlayingRef.current = true;
+          setIsMusicPlaying(true);
+          playBackgroundMusic();
+        }
       }, 800);
     }
-  }, [player1Valid, player2Valid, hasEnteredGame]);
+  }, [player1Valid, player2Valid, hasEnteredGame, audioContext]);
 
   // Unlock panel 11 if all 1-10 opened
   const allPanelsOpened = Array.from({ length: 10 }, (_, i) => i + 1).every(id => openedPanels.has(id));
@@ -452,10 +462,10 @@ export default function App() {
         </div>
       </header>
 
-      {/* Music button - z-30 so it doesn't overlap modal (z-40/z-50) */}
+      {/* Music button - z-50 normally, z-30 when modal is open so it doesn't overlap */}
       <button
         onClick={toggleMusic}
-        className="fixed top-4 right-4 z-30 p-3 rounded-lg bg-[#3d2a4d] border-2 border-[#8b9dc3] hover:border-[#f4a460] transition-colors shadow-lg"
+        className={`fixed top-4 right-4 p-3 rounded-lg bg-[#3d2a4d] border-2 border-[#8b9dc3] hover:border-[#f4a460] transition-colors shadow-lg ${isAnyModalOpen ? 'z-30' : 'z-50'}`}
         aria-label={isMusicPlaying ? 'Mute music' : 'Play music'}
       >
         {isMusicPlaying ? <Volume2 className="w-6 h-6 text-[#8b9dc3]" /> : <VolumeX className="w-6 h-6 text-[#8b9dc3]" />}
@@ -479,6 +489,7 @@ export default function App() {
                 isSpecial={panel.id === 11}
                 onOpen={handlePanelOpen}
                 onClick={handlePanelClick}
+                onModalChange={setIsAnyModalOpen}
               />
             );
           })}
