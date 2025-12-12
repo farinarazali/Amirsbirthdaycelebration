@@ -5,7 +5,7 @@ import path from 'path';
 
 export default defineConfig({
   // For GitHub Pages deployment
-  base: '/Amirsbirthdayadvent/',
+  base: '/Amirsbirthdaycelebration/',
   plugins: [react()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
